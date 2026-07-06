@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-google-blue: #4285F4;
+  --color-google-red: #EA4335;
+  --color-google-yellow: #FBBC05;
+  --color-google-green: #34A853;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-gray-900 bg-gray-50/50 dark:text-gray-100 dark:bg-neutral-950 transition-colors duration-300;
+  }
+}
+
+/* Custom visual styles */
+.glassmorphic {
+  @apply bg-white/70 dark:bg-neutral-950/70 backdrop-blur-md border-b border-gray-200/50 dark:border-neutral-800/50;
+}
+
+/* Custom dotted research background dynamic grid */
+.dotted-bg {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+.dark .dotted-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1.5px, transparent 1.5px);
+}
+
+/* Styled scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 dark:bg-neutral-800 rounded;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-300 dark:bg-neutral-700;
+}
+
+/* Entrance animations for sections */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-on-scroll.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accessibility: disable entrance animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Staggered delay helpers for children */
+.animate-stagger-1 { transition-delay: 0.1s; }
+.animate-stagger-2 { transition-delay: 0.2s; }
+.animate-stagger-3 { transition-delay: 0.3s; }
+.animate-stagger-4 { transition-delay: 0.4s; }
+.animate-stagger-5 { transition-delay: 0.5s; }
+
+/* Keyframe definitions */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes ping {
+  75%, to {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Animation utility classes */
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-scale-up {
+  animation: scale-up 0.5s ease-out forwards;
+}
+
+/* Markdown styling for Articles */
+.markdown-body h2 {
+  @apply text-xl font-display font-semibold mt-6 mb-3 text-gray-900 dark:text-white/90;
+}
+.markdown-body h3 {
+  @apply text-lg font-display font-medium mt-4 mb-2 text-gray-800 dark:text-white/80;
+}
+.markdown-body p {
+  @apply text-gray-700 dark:text-neutral-300 mb-4 leading-relaxed;
+}
+.markdown-body pre {
+  @apply bg-gray-100 dark:bg-neutral-900/50 border border-gray-200/50 dark:border-neutral-800/80 p-4 rounded-xl font-mono text-sm overflow-x-auto mb-4 text-gray-800 dark:text-neutral-200 max-w-full;
+}
+.markdown-body code {
+  @apply font-mono px-1.5 py-0.5 rounded text-sm bg-gray-100 dark:bg-neutral-800 text-google-blue dark:text-blue-400;
+}
+.markdown-body pre code {
+  @apply p-0 bg-transparent text-gray-800 dark:text-neutral-200;
+}
+.markdown-body ul {
+  @apply list-disc list-inside space-y-1 mb-4 text-gray-700 dark:text-neutral-300;
+}
+.markdown-body ol {
+  @apply list-decimal list-inside space-y-1 mb-4 text-gray-700 dark:text-neutral-300;
+}
