@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
-import { Mail, Github, Linkedin, Twitter, Sparkles, Send, CheckCircle2, ShieldCheck, Terminal } from 'lucide-react';
+import { Phone, Mail, Github, Linkedin, Send, CheckCircle2, ShieldCheck, Terminal, Code2, Trophy, Award } from 'lucide-react';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+    // Keep the site static: hand the message to the visitor's mail client.
+    const subject = encodeURIComponent(`Portfolio inquiry from ${formData.name}`);
+    const body = encodeURIComponent(
+      `${formData.message}\n\n— ${formData.name}\n${formData.email}`
+    );
+    window.location.href = `mailto:mariognan13@gmail.com?subject=${subject}&body=${body}`;
+    setSubmitted(true);
   };
 
   const socialLinks = [
+    { label: 'Phone', value: '+91 99637 85475', href: 'tel:+919963785475', icon: Phone, color: 'text-google-green' },
     { label: 'E-Mail', value: 'mariognan13@gmail.com', href: 'mailto:mariognan13@gmail.com', icon: Mail, color: 'text-google-blue' },
-    { label: 'GitHub Link', value: 'Github', href: 'https://github.com/mariognan13-lab', icon: Github, color: 'text-gray-900 dark:text-white' },
-    { label: 'LinkedIn Grid', value: 'Linkedin', href: 'www.linkedin.com/in/mario-gnan-seelam-959412385', icon: Linkedin, color: 'text-google-blue' },
-    { label: 'LeetCode Profile', value: 'LeetCode', href: 'https://leetcode.com/u/6P39JTz2xd/', icon: Terminal, color: 'text-amber-500' },
+    { label: 'GitHub', value: 'mariognan13-lab', href: 'https://github.com/mariognan13-lab', icon: Github, color: 'text-gray-900 dark:text-white' },
+    { label: 'LinkedIn', value: 'mario-gnan-seelam', href: 'https://www.linkedin.com/in/mario-gnan-seelam-959412385', icon: Linkedin, color: 'text-google-blue' },
+    { label: 'LeetCode', value: '6P39JTz2xd', href: 'https://leetcode.com/u/6P39JTz2xd/', icon: Terminal, color: 'text-amber-500' },
+    { label: 'CodeChef', value: 'blaze_t800', href: 'https://www.codechef.com/users/blaze_t800', icon: Code2, color: 'text-google-yellow' },
+    { label: 'Codeforces', value: 'Mario_001', href: 'https://codeforces.com/profile/Mario_001', icon: Trophy, color: 'text-google-red' },
+    { label: 'HackerRank', value: 'mariognan13', href: 'https://www.hackerrank.com/profile/mariognan13', icon: Award, color: 'text-google-green' },
   ];
 
   return (
-    <section id="contact" className="py-24 border-t border-gray-150 dark:border-neutral-900 bg-white dark:bg-neutral-950 transition-colors duration-300 animate-on-scroll">
+    <section id="contact" className="py-24 border-t border-gray-200 dark:border-neutral-900 bg-white dark:bg-neutral-950 transition-colors duration-300 animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section title header */}
@@ -44,7 +49,7 @@ export default function ContactSection() {
               <h3 className="text-xl md:text-2xl font-display font-bold text-gray-900 dark:text-white tracking-tight">
                 Investigational Queries & Collaborations
               </h3>
-              <p className="text-sm text-gray-500 dark:text-neutral-450 leading-relaxed font-light font-sans max-w-sm">
+              <p className="text-sm text-gray-500 dark:text-neutral-400 leading-relaxed font-light font-sans max-w-sm">
                 Feel free to connect for software development collaborations, competitive programming inquiries, or student opportunities.
               </p>
             </div>
@@ -132,18 +137,11 @@ export default function ContactSection() {
 
                 <div className="select-none">
                   <button
-                    disabled={loading}
                     type="submit"
                     className="w-full py-3.5 px-6 rounded-xl bg-google-blue hover:bg-blue-600 text-white font-sans text-xs font-bold shadow-md cursor-pointer flex items-center justify-center gap-2 transition-all"
                   >
-                    {loading ? (
-                      <span>TRANSMITTING BARS...</span>
-                    ) : (
-                      <>
-                        <span>TRANSMIT PACKET SYSTEM</span>
-                        <Send className="w-3.5 h-3.5" />
-                      </>
-                    )}
+                    <span>OPEN EMAIL DRAFT</span>
+                    <Send className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </form>
@@ -159,15 +157,11 @@ export default function ContactSection() {
                 
                 <div className="space-y-2">
                   <h3 className="text-lg md:text-xl font-display font-bold text-gray-950 dark:text-white tracking-tight">
-                    Transmission Connected Correctly
+                    Email Draft Ready
                   </h3>
-                  <p className="text-xs text-gray-500 dark:text-neutral-450 max-w-sm mx-auto leading-relaxed font-sans font-light">
-                    Your metadata packet was dispatched safely. Network handshake acknowledged under <strong>120ms total latency</strong>. We will establish connection on your channel shortly.
+                  <p className="text-xs text-gray-500 dark:text-neutral-400 max-w-sm mx-auto leading-relaxed font-sans font-light">
+                    Your mail client should now be open with the message filled in. If nothing opened, email <strong>mariognan13@gmail.com</strong> directly.
                   </p>
-                </div>
-
-                <div className="font-mono text-[10px] text-gray-400 select-all bg-gray-50 dark:bg-neutral-950 border border-gray-100 dark:border-neutral-850 px-4 py-2 rounded-lg">
-                  IP: CLIENT_HANDSHAKE_ESTABLISHED · STATUS: OK
                 </div>
 
                 <button

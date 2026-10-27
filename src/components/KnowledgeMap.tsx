@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, HelpCircle, GitCommit, Binary, Terminal, Brain, Sigma, Cpu } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, HelpCircle, GitCommit } from 'lucide-react';
 import { KNOWLEDGE_NODES, KNOWLEDGE_LINKS } from '../data';
 import { KnowledgeNode } from '../types';
 
@@ -64,7 +64,7 @@ export default function KnowledgeMap() {
   };
 
   return (
-    <section id="skills" className="py-24 border-t border-gray-150 dark:border-neutral-900 bg-gray-50/50 dark:bg-neutral-950/10 transition-colors duration-300 animate-on-scroll">
+    <section id="skills" className="py-24 border-t border-gray-200 dark:border-neutral-900 bg-gray-50/50 dark:bg-neutral-950/10 transition-colors duration-300 animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Title */}
@@ -82,12 +82,12 @@ export default function KnowledgeMap() {
             <div className="text-xs font-mono text-gray-400 dark:text-neutral-500 mb-3 flex items-center justify-between px-2 select-none">
               <span className="flex items-center gap-1.5">
                 <HelpCircle className="w-3.5 h-3.5" />
-                <span>Drag inside the map to Pan. Pinch or double click to zoom. Click node to inspect details.</span>
+                <span>Drag inside the map to pan. Use the buttons to zoom. Click a node to inspect details.</span>
               </span>
               <div className="flex gap-2">
-                <button onClick={() => handleZoom(1.15)} className="p-1 hover:bg-gray-150 rounded" title="Zoom in"><ZoomIn className="w-4 h-4" /></button>
-                <button onClick={() => handleZoom(0.85)} className="p-1 hover:bg-gray-150 rounded" title="Zoom out"><ZoomOut className="w-4 h-4" /></button>
-                <button onClick={handleReset} className="p-1 hover:bg-gray-150 rounded" title="Reset map"><RotateCcw className="w-4 h-4" /></button>
+                <button onClick={() => handleZoom(1.15)} className="p-1 hover:bg-gray-200 rounded" title="Zoom in"><ZoomIn className="w-4 h-4" /></button>
+                <button onClick={() => handleZoom(0.85)} className="p-1 hover:bg-gray-200 rounded" title="Zoom out"><ZoomOut className="w-4 h-4" /></button>
+                <button onClick={handleReset} className="p-1 hover:bg-gray-200 rounded" title="Reset map"><RotateCcw className="w-4 h-4" /></button>
               </div>
             </div>
 
@@ -110,7 +110,7 @@ export default function KnowledgeMap() {
                 {/* Embedded Grid backdrop coordinates */}
                 <defs>
                   <pattern id="network-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-gray-100 dark:text-neutral-850" />
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-gray-100 dark:text-neutral-800" />
                   </pattern>
                 </defs>
                 <rect width="100%" height="100%" fill="url(#network-grid)" />
@@ -141,7 +141,7 @@ export default function KnowledgeMap() {
                           className={`transition-all duration-300 ${
                             isHighlighted 
                               ? 'text-google-blue dark:text-blue-500 opacity-80' 
-                              : 'text-gray-250 dark:text-neutral-800 opacity-50'
+                              : 'text-gray-200 dark:text-neutral-800 opacity-50'
                           }`}
                         />
                       );
@@ -212,7 +212,7 @@ export default function KnowledgeMap() {
               <div className="h-full bg-white dark:bg-neutral-900 border border-gray-200/60 dark:border-neutral-800/80 rounded-2xl p-6 md:p-8 flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-mono tracking-wider font-semibold px-2.5 py-1 rounded bg-gray-100 dark:bg-neutral-950 text-gray-550 dark:text-neutral-400 uppercase">
+                    <span className="text-[10px] font-mono tracking-wider font-semibold px-2.5 py-1 rounded bg-gray-100 dark:bg-neutral-950 text-gray-600 dark:text-neutral-400 uppercase">
                       {selectedNode.category} MODULE
                     </span>
                     <span className="text-xs font-mono text-gray-400">
@@ -241,10 +241,10 @@ export default function KnowledgeMap() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-100 dark:border-neutral-850/50 flex select-none">
+                <div className="pt-4 border-t border-gray-100 dark:border-neutral-800/50 flex select-none">
                   <button
                     onClick={() => alert(`Reviewing core source codes connected to: ${selectedNode.label}`)}
-                    className="w-full py-3 px-5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-neutral-950 border border-gray-150 dark:border-neutral-800 text-center text-xs font-semibold text-gray-700 dark:text-neutral-300 cursor-pointer"
+                    className="w-full py-3 px-5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-neutral-950 border border-gray-200 dark:border-neutral-800 text-center text-xs font-semibold text-gray-700 dark:text-neutral-300 cursor-pointer"
                   >
                     Examine Code Dependencies
                   </button>

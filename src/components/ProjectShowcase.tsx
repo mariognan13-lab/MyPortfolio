@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Code, ExternalLink, Github, Layers, ArrowUpRight, MonitorPlay } from 'lucide-react';
+import { Github, MonitorPlay } from 'lucide-react';
 import { PROJECTS } from '../data';
 import { Project } from '../types';
 
@@ -122,10 +122,10 @@ export default function ProjectShowcase() {
               <span>READY</span>
             </div>
             <div className="space-y-1">
-              <div className="text-sm font-semibold tracking-tighter-text text-white">REACTIVE SYSTEMS</div>
+              <div className="text-sm font-semibold tracking-tighter text-white">REACTIVE SYSTEMS</div>
               <div className="text-gray-500 text-[9px]">MODULAR MOTION RENDERING</div>
             </div>
-            <div className="flex justify-between items-end border-t border-white/10 pt-2 text-[9px] text-gray-550">
+            <div className="flex justify-between items-end border-t border-white/10 pt-2 text-[9px] text-gray-600">
               <span>HTML5 CANVAS ADAPTER</span>
               <span>HMR_DISABLED</span>
             </div>
@@ -135,7 +135,7 @@ export default function ProjectShowcase() {
   };
 
   return (
-    <section id="projects" className="py-24 border-t border-gray-150 dark:border-neutral-900 bg-white dark:bg-neutral-950 transition-colors duration-300 animate-on-scroll">
+    <section id="projects" className="py-24 border-t border-gray-200 dark:border-neutral-900 bg-white dark:bg-neutral-950 transition-colors duration-300 animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -157,7 +157,7 @@ export default function ProjectShowcase() {
                 className={`px-4 py-2 rounded-full font-sans text-xs font-medium cursor-pointer transition-all ${
                   selectedFilter === fil
                     ? 'bg-google-blue text-white shadow-sm'
-                    : 'bg-gray-50/50 dark:bg-neutral-900 border border-gray-200/60 dark:border-neutral-800 text-gray-600 dark:text-neutral-400 hover:bg-gray-55'
+                    : 'bg-gray-50/50 dark:bg-neutral-900 border border-gray-200/60 dark:border-neutral-800 text-gray-600 dark:text-neutral-400 hover:bg-gray-100'
                 }`}
               >
                 {fil}
@@ -175,7 +175,7 @@ export default function ProjectShowcase() {
               className="bg-white dark:bg-neutral-900 border border-gray-200/65 dark:border-neutral-800/80 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col group"
             >
               {/* Specialized Thumbnail Header */}
-              <div className="aspect-[16/10] w-full border-b border-gray-150 dark:border-neutral-800 overflow-hidden relative">
+              <div className="aspect-[16/10] w-full border-b border-gray-200 dark:border-neutral-800 overflow-hidden relative">
                 {renderProjectVisualTheme(project.category)}
                 
                 {/* Micro Category Tag Floating Overlay */}
@@ -210,19 +210,23 @@ export default function ProjectShowcase() {
 
                   {/* Actions Row */}
                   <div className="flex items-center gap-3 pt-4 border-t border-gray-100 dark:border-neutral-800/60">
-                    <button
-                      onClick={() => alert(`Simulating execution playground of demo: ${project.title}`)}
-                      className="flex-1 py-2 px-4 rounded-xl bg-gray-50 hover:bg-google-blue hover:text-white dark:bg-neutral-950 border border-gray-150 dark:border-neutral-800 text-center text-xs font-semibold text-gray-700 dark:text-neutral-300 cursor-pointer flex items-center justify-center gap-1.5 transition-all"
-                    >
-                      <MonitorPlay className="w-3.5 h-3.5" />
-                      <span>Live Sandbox</span>
-                    </button>
+                    {/^https?:\/\//.test(project.demoUrl) && (
+                      <a
+                        href={project.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-2 px-4 rounded-xl bg-gray-50 hover:bg-google-blue hover:text-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-800 text-center text-xs font-semibold text-gray-700 dark:text-neutral-300 cursor-pointer flex items-center justify-center gap-1.5 transition-all"
+                      >
+                        <MonitorPlay className="w-3.5 h-3.5" />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
                     
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 rounded-xl border border-gray-150 dark:border-neutral-800 text-gray-500 hover:text-gray-900 dark:text-neutral-400 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-950 transition-colors"
+                      className={`p-2 rounded-xl border border-gray-200 dark:border-neutral-800 text-gray-500 hover:text-gray-900 dark:text-neutral-400 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-950 transition-colors ${/^https?:\/\//.test(project.demoUrl) ? '' : 'ml-auto'}`}
                       title="Explore Source Code repository"
                     >
                       <Github className="w-4 h-4" />

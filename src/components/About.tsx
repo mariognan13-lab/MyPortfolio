@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Award, BookOpen, Terminal, CheckCircle2, ChevronRight, Binary, Code, Database, Brain, Sparkles, Sigma, Cpu } from 'lucide-react';
+import React, { useState } from 'react';
+import { Terminal, Binary, Code, Database, Sparkles, Cpu } from 'lucide-react';
+import portraitUrl from '../assets/images/mario_seelam_portrait.png';
 
 export default function About() {
   const [activeTab, setActiveTab] = useState<'mission'|'interests'>('mission');
 
   // Animated counters configuration
   const counters = [
-    { label: 'B.Tech CGPA', target: 8.8, prefix: '', suffix: '' },
-    { label: 'Diploma %', target: 93.1, prefix: '', suffix: '%' },
-    { label: 'Problems Solved', target: 600, prefix: '', suffix: '+' },
-    { label: 'Certifications', target: 3, prefix: '', suffix: '' },
+    { label: 'B.Tech CGPA', target: 8.5, prefix: '', suffix: '' },
+    { label: 'Diploma %', target: 93.14, prefix: '', suffix: '%' },
+    { label: 'Projects Built', target: 3, prefix: '', suffix: '' },
+    { label: 'Certifications', target: 8, prefix: '', suffix: '' },
   ];
 
   const interestCategories = [
@@ -17,7 +18,7 @@ export default function About() {
       id: 'cp',
       title: 'Competitive Programming',
       icon: Binary,
-      description: 'Active solver on LeetCode (Rating 1401), CodeChef (Rating 1255), and Codeforces. Solved over 600 algorithmic problems.',
+      description: 'Active solver on LeetCode (1383), CodeChef (1172), and Codeforces (636), with a 5-star HackerRank problem-solving badge.',
       color: 'border-l-4 border-google-blue',
       badge: 'Active Solver'
     },
@@ -25,7 +26,7 @@ export default function About() {
       id: 'web',
       title: 'Web Development',
       icon: Code,
-      description: 'Building modern interfaces. Developed Crime Reporting Web App featuring in-browser media capture. freeCodeCamp Certified.',
+      description: 'Building modern interfaces with HTML, CSS, JavaScript, PHP, and Bootstrap. Built the Crime Reporting Web App with in-browser media capture. freeCodeCamp certified.',
       color: 'border-l-4 border-google-red',
       badge: 'Responsive UI'
     },
@@ -64,7 +65,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 border-t border-gray-150 dark:border-neutral-900 bg-white dark:bg-neutral-950 transition-colors duration-300 animate-on-scroll">
+    <section id="about" className="py-24 border-t border-gray-200 dark:border-neutral-900 bg-white dark:bg-neutral-950 transition-colors duration-300 animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section header */}
@@ -82,14 +83,10 @@ export default function About() {
           <div className="lg:col-span-4 flex flex-col items-center">
             <div className="relative group w-full max-w-[340px] aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 dark:bg-neutral-900 border border-gray-200/60 dark:border-neutral-800/60 shadow-lg">
               <img
-                src="/src/assets/images/mario_seelam_portrait.png"
+                src={portraitUrl}
                 alt="Mario Seelam Portrait"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover grayscale select-none group-hover:grayscale-0 transition-all duration-500 scale-102"
-                onError={(e) => {
-                  // Fallback if image fails to render
-                  (e.target as HTMLImageElement).src = "https://picsum.photos/seed/mario/600/800";
-                }}
               />
               {/* Overlay graphics */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
@@ -102,14 +99,11 @@ export default function About() {
             {/* Resume button download option */}
             <a
               id="resume-download-btn"
-              href="#resume-pdf"
-              onClick={(e) => {
-                e.preventDefault();
-                alert("Simulating standard PDF Resume download. Contact: mariognan13@gmail.com for inquiries.");
-              }}
+              href="/resume.pdf"
+              download="Mario-Seelam-Resume.pdf"
               className="mt-6 w-full max-w-[340px] py-3.5 px-6 rounded-xl border border-gray-200 dark:border-neutral-800 text-center text-sm font-semibold text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-900 cursor-pointer transition-colors block"
             >
-              Examine CV / Resume (.pdf)
+              Download CV / Resume (.pdf)
             </a>
           </div>
 
@@ -117,7 +111,7 @@ export default function About() {
           <div className="lg:col-span-8 space-y-10">
             
             {/* Tab navigation */}
-            <div className="flex border-b border-gray-100 dark:border-neutral-850 gap-6">
+            <div className="flex border-b border-gray-100 dark:border-neutral-800 gap-6">
               <button
                 onClick={() => setActiveTab('mission')}
                 className={`pb-4 text-base font-semibold tracking-tight border-b-2 cursor-pointer transition-all ${
@@ -132,8 +126,8 @@ export default function About() {
                 onClick={() => setActiveTab('interests')}
                 className={`pb-4 text-base font-semibold tracking-tight border-b-2 cursor-pointer transition-all ${
                   activeTab === 'interests'
-                    ? 'border-transparent text-gray-400 hover:text-gray-600 dark:text-neutral-500 dark:hover:text-neutral-300'
-                    : 'border-google-blue text-gray-900 dark:text-white' // wait inverted states
+                    ? 'border-google-blue text-gray-900 dark:text-white'
+                    : 'border-transparent text-gray-400 hover:text-gray-600 dark:text-neutral-500 dark:hover:text-neutral-300'
                 }`}
               >
                 InVestigation Clusters
@@ -147,9 +141,9 @@ export default function About() {
                   I am a Computer Science student and software developer. I build clean, responsive web user-interfaces and solve complex algorithmic scenarios on competitive programming platforms.
                 </p>
                 <p>
-                  My academic foundations at <strong>Prasad V. Potluri Siddhartha Institute of Technology</strong> and past Diploma studies have grounded me in Data Structures & Algorithms, Operating Systems, Database Management Systems, and Computer Networks. I focus on bridging logical theory with practical, user-centered web applications.
+                  My academic foundations at <strong>Prasad V. Potluri Siddhartha Institute of Technology</strong> and past Diploma studies have grounded me in Data Structures & Algorithms, Operating Systems, Database Management Systems, and Computer Networks. Through AWS Academy, Red Hat, Cisco, and Infosys programs, I have also built foundations in cloud infrastructure and machine learning. I focus on bridging logical theory with practical, user-centered web applications.
                 </p>
-                <p className="border-l-4 border-google-red pl-5 italic text-gray-550 dark:text-neutral-400 text-base">
+                <p className="border-l-4 border-google-red pl-5 italic text-gray-600 dark:text-neutral-400 text-base">
                   "Solving problems is not just about passing tests; it is about writing clean, optimized code that executes efficiently and enhances the user experience."
                 </p>
               </div>
@@ -161,7 +155,7 @@ export default function About() {
                   return (
                     <div
                       key={cat.id}
-                      className={`p-5 rounded-2xl bg-gray-50/50 dark:bg-neutral-900/30 border border-gray-150 dark:border-neutral-900/60 hover:shadow-md transition-all ${cat.color}`}
+                      className={`p-5 rounded-2xl bg-gray-50/50 dark:bg-neutral-900/30 border border-gray-200 dark:border-neutral-900/60 hover:shadow-md transition-all ${cat.color}`}
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <div className="p-2 rounded-lg bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 text-gray-800 dark:text-white">
@@ -186,7 +180,7 @@ export default function About() {
             {/* Counters Section */}
             <div className="pt-8 border-t border-gray-100 dark:border-neutral-900 grid grid-cols-2 md:grid-cols-4 gap-6" id="stats-dashboard">
               {counters.map((count, index) => (
-                <div key={index} className="text-center md:text-left p-4 rounded-xl bg-gray-55/30 dark:bg-neutral-900/10">
+                <div key={index} className="text-center md:text-left p-4 rounded-xl bg-gray-100/30 dark:bg-neutral-900/10">
                   <div className="text-3xl md:text-4xl font-mono font-medium text-gray-900 dark:text-white select-all">
                     {count.prefix}{count.target}{count.suffix}
                   </div>

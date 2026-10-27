@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowDown, HelpCircle, Network, GitMerge, Orbit, CircleDot } from 'lucide-react';
+import { ArrowDown, CircleDot } from 'lucide-react';
 
 export default function Hero() {
   const [offsetY, setOffsetY] = useState(0);
@@ -81,7 +81,7 @@ export default function Hero() {
         <div className="relative flex items-center justify-center animate-pulse" style={{ animationDuration: '4s' }}>
           <svg className="w-16 h-16 text-google-red stroke-current" viewBox="0 0 64 64" fill="none" strokeWidth="1.5">
             {/* Redesigned minimal geometric butterfly */}
-            <path d="M32 20C24 10 12 14 12 24C12 34 22 36 32 44C42 36 52 34 52 24C52 14 40 10 32 20Z animate-wing" fill="none" />
+            <path d="M32 20C24 10 12 14 12 24C12 34 22 36 32 44C42 36 52 34 52 24C52 14 40 10 32 20Z" fill="none" />
             <path d="M32 12V48" strokeWidth="2.5" />
             <path d="M32 18C28 15 24 16 22 20" />
             <path d="M32 18C36 15 40 16 42 20" />

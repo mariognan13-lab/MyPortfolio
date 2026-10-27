@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* Class-based dark mode: the app toggles `.dark` on <html>, while Tailwind v4
+   defaults to the prefers-color-scheme media query. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
@@ -21,11 +25,6 @@ html {
   body {
     @apply font-sans antialiased text-gray-900 bg-gray-50/50 dark:text-gray-100 dark:bg-neutral-950 transition-colors duration-300;
   }
-}
-
-/* Custom visual styles */
-.glassmorphic {
-  @apply bg-white/70 dark:bg-neutral-950/70 backdrop-blur-md border-b border-gray-200/50 dark:border-neutral-800/50;
 }
 
 /* Custom dotted research background dynamic grid */
@@ -80,13 +79,6 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
-
-/* Staggered delay helpers for children */
-.animate-stagger-1 { transition-delay: 0.1s; }
-.animate-stagger-2 { transition-delay: 0.2s; }
-.animate-stagger-3 { transition-delay: 0.3s; }
-.animate-stagger-4 { transition-delay: 0.4s; }
-.animate-stagger-5 { transition-delay: 0.5s; }
 
 /* Keyframe definitions */
 @keyframes slide-up {
@@ -157,28 +149,3 @@ html {
   animation: scale-up 0.5s ease-out forwards;
 }
 
-/* Markdown styling for Articles */
-.markdown-body h2 {
-  @apply text-xl font-display font-semibold mt-6 mb-3 text-gray-900 dark:text-white/90;
-}
-.markdown-body h3 {
-  @apply text-lg font-display font-medium mt-4 mb-2 text-gray-800 dark:text-white/80;
-}
-.markdown-body p {
-  @apply text-gray-700 dark:text-neutral-300 mb-4 leading-relaxed;
-}
-.markdown-body pre {
-  @apply bg-gray-100 dark:bg-neutral-900/50 border border-gray-200/50 dark:border-neutral-800/80 p-4 rounded-xl font-mono text-sm overflow-x-auto mb-4 text-gray-800 dark:text-neutral-200 max-w-full;
-}
-.markdown-body code {
-  @apply font-mono px-1.5 py-0.5 rounded text-sm bg-gray-100 dark:bg-neutral-800 text-google-blue dark:text-blue-400;
-}
-.markdown-body pre code {
-  @apply p-0 bg-transparent text-gray-800 dark:text-neutral-200;
-}
-.markdown-body ul {
-  @apply list-disc list-inside space-y-1 mb-4 text-gray-700 dark:text-neutral-300;
-}
-.markdown-body ol {
-  @apply list-decimal list-inside space-y-1 mb-4 text-gray-700 dark:text-neutral-300;
-}

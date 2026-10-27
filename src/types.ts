@@ -7,6 +7,7 @@ export interface ResearchPaper {
   technologies: string[];
   date: string;
   venue: string;
+  credentialUrl?: string;
   impactMetrics?: {
     citations?: number;
     stars?: number;
@@ -26,17 +27,6 @@ export interface Project {
   highlighted?: boolean;
 }
 
-export interface BlogPost {
-  id: string;
-  title: string;
-  category: string;
-  date: string;
-  readingTime: string;
-  summary: string;
-  content: string; // Markdown supported
-  featuredImage?: string;
-}
-
 export interface Milestone {
   id: string;
   title: string;
@@ -44,19 +34,6 @@ export interface Milestone {
   subtitle: string;
   description: string;
   highlights: string[];
-}
-
-export interface ReadItem {
-  id: string;
-  type: 'paper' | 'book' | 'course';
-  title: string;
-  creator: string; // Author or Instructor
-  dateFinished: string;
-  summary: string;
-  keyInsights: string[];
-  rating: number; // 1 to 5
-  notes: string;
-  category: string;
 }
 
 export interface KnowledgeNode {

@@ -29,11 +29,8 @@ export default function Navbar({ darkMode, setDarkMode, openPalette, activeSecti
     { label: 'About', id: 'about' },
     { label: 'Certifications', id: 'research' },
     { label: 'Projects', id: 'projects' },
-    { label: 'Knowledge Map', id: 'skills' },
-    { label: 'Metrics', id: 'metrics' },
+    { label: 'Skills', id: 'skills' },
     { label: 'Timeline', id: 'timeline' },
-    { label: 'Library', id: 'library' },
-    { label: 'Blog', id: 'blog' },
     { label: 'Contact', id: 'contact' },
   ];
 

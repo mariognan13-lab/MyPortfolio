@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, CheckCircle2, ChevronRight, GraduationCap, Trophy, Cpu, Code2, LineChart, HelpCircle } from 'lucide-react';
+import { Calendar, CheckCircle2, GraduationCap, Trophy, Cpu, Code2, LineChart, HelpCircle } from 'lucide-react';
 import { MILESTONES } from '../data';
 
 export default function Timeline() {
@@ -18,7 +18,7 @@ export default function Timeline() {
   };
 
   return (
-    <section id="timeline" className="py-24 border-t border-gray-150 dark:border-neutral-900 bg-gray-50/50 dark:bg-neutral-950/20 transition-colors duration-300 animate-on-scroll">
+    <section id="timeline" className="py-24 border-t border-gray-200 dark:border-neutral-900 bg-gray-50/50 dark:bg-neutral-950/20 transition-colors duration-300 animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header Title */}
@@ -33,7 +33,7 @@ export default function Timeline() {
         <div className="relative max-w-4xl mx-auto pl-6 sm:pl-0" id="chronicle-timeline-container">
           
           {/* Vertical core connector line */}
-          <div className="absolute left-6 sm:left-1/2 top-4 bottom-4 w-[2px] bg-gray-200 dark:bg-neutral-850 transform -translate-x-1/2" />
+          <div className="absolute left-6 sm:left-1/2 top-4 bottom-4 w-[2px] bg-gray-200 dark:bg-neutral-800 transform -translate-x-1/2" />
 
           <div className="space-y-12">
             {MILESTONES.map((milestone, idx) => {
@@ -67,7 +67,7 @@ export default function Timeline() {
 
                   {/* Card Content container block */}
                   <div className="w-full sm:w-1/2 pl-12 sm:pl-0 sm:px-8 relative">
-                    <div className="bg-white dark:bg-neutral-900 border border-gray-205 dark:border-neutral-800 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300 space-y-4">
+                    <div className="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-2xl p-6 hover:shadow-lg transition-shadow duration-300 space-y-4">
                       
                       {/* Subtitle tag / Date tag */}
                       <div className="flex items-center gap-3 justify-between">
@@ -86,15 +86,15 @@ export default function Timeline() {
                           <MilestoneIcon className="w-4.5 h-4.5 text-google-red" />
                           <span>{milestone.title}</span>
                         </h3>
-                        <p className="text-sm text-gray-500 dark:text-neutral-450 leading-relaxed font-light">
+                        <p className="text-sm text-gray-500 dark:text-neutral-400 leading-relaxed font-light">
                           {milestone.description}
                         </p>
                       </div>
 
                       {/* Bullet Highlights under Milestone Card */}
-                      <div className="pt-4 border-t border-gray-100 dark:border-neutral-850 space-y-2">
+                      <div className="pt-4 border-t border-gray-100 dark:border-neutral-800 space-y-2">
                         {milestone.highlights.map((hlt, sIdx) => (
-                          <div key={sIdx} className="flex items-start gap-2.5 text-xs text-gray-600 dark:text-neutral-350 font-light leading-relaxed">
+                          <div key={sIdx} className="flex items-start gap-2.5 text-xs text-gray-600 dark:text-neutral-300 font-light leading-relaxed">
                             <CheckCircle2 className="w-3.5 h-3.5 text-google-red mt-0.5 flex-shrink-0" />
                             <span>{hlt}</span>
                           </div>

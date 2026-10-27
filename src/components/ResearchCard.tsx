@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, ExternalLink, MessageSquare, Award, ChevronDown, ChevronUp, Share2, Star } from 'lucide-react';
+import { Award, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import { RESEARCH_PAPERS } from '../data';
 import { ResearchPaper } from '../types';
 
@@ -7,7 +7,7 @@ export default function ResearchSection() {
   const [selectedDomain, setSelectedDomain] = useState<string>('All');
   const [expandedPapers, setExpandedPapers] = useState<Record<string, boolean>>({});
 
-  const domains = ['All', 'Python Programming', 'Software Development', 'Frontend Engineering'];
+  const domains = ['All', 'Python Programming', 'Software Development', 'Frontend Engineering', 'Machine Learning', 'Cloud & Systems', 'Systems Administration'];
 
   const toggleExpand = (id: string) => {
     setExpandedPapers((prev) => ({
@@ -21,7 +21,7 @@ export default function ResearchSection() {
     : RESEARCH_PAPERS.filter(p => p.domain === selectedDomain);
 
   return (
-    <section id="research" className="py-24 border-t border-gray-150 dark:border-neutral-900 bg-gray-50/50 dark:bg-neutral-950/20 transition-colors duration-300 animate-on-scroll">
+    <section id="research" className="py-24 border-t border-gray-200 dark:border-neutral-900 bg-gray-50/50 dark:bg-neutral-950/20 transition-colors duration-300 animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title Header */}
@@ -43,7 +43,7 @@ export default function ResearchSection() {
                 className={`px-4 py-2 rounded-full font-sans text-xs font-medium cursor-pointer transition-all ${
                   selectedDomain === dom
                     ? 'bg-google-red text-white'
-                    : 'bg-white dark:bg-neutral-900 border border-gray-200/60 dark:border-neutral-800 text-gray-600 dark:text-neutral-400 hover:bg-gray-55'
+                    : 'bg-white dark:bg-neutral-900 border border-gray-200/60 dark:border-neutral-800 text-gray-600 dark:text-neutral-400 hover:bg-gray-100'
                 }`}
               >
                 {dom}
@@ -61,7 +61,7 @@ export default function ResearchSection() {
               <div
                 key={paper.id}
                 id={paper.id}
-                className="bg-white dark:bg-neutral-900 border border-gray-200/65 dark:border-neutral-800/80 rounded-2xl hover:shadow-lg transition-all duration-300 overflow-hidden"
+                className="group bg-white dark:bg-neutral-900 border border-gray-200/65 dark:border-neutral-800/80 rounded-2xl hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 {/* Paper Header */}
                 <div 
@@ -90,10 +90,25 @@ export default function ResearchSection() {
 
                   {/* Verification indicator */}
                   <div className="flex items-center gap-3 text-xs font-mono text-gray-400 dark:text-neutral-500 self-start md:self-auto bg-gray-50 dark:bg-neutral-900/50 p-3 rounded-xl border border-gray-100 dark:border-neutral-800/50">
-                    <div className="text-center px-2">
-                      <span className="block text-sm font-semibold text-google-green">Verified</span>
-                      <span className="text-[9px] uppercase tracking-wider text-gray-400 font-medium">Credential</span>
-                    </div>
+                    {paper.credentialUrl ? (
+                      <a
+                        href={paper.credentialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-center px-2 hover:opacity-80 transition-opacity"
+                        title="Open the public credential"
+                      >
+                        <span className="flex items-center justify-center gap-1 text-sm font-semibold text-google-green">
+                          Verified <ExternalLink className="w-3 h-3" />
+                        </span>
+                        <span className="text-[9px] uppercase tracking-wider text-gray-400 font-medium">Credential</span>
+                      </a>
+                    ) : (
+                      <div className="text-center px-2">
+                        <span className="block text-sm font-semibold text-gray-500 dark:text-neutral-400">Completed</span>
+                        <span className="text-[9px] uppercase tracking-wider text-gray-400 font-medium">Credential</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -111,7 +126,7 @@ export default function ResearchSection() {
                     {/* Abstract full */}
                     <div>
                       <h4 className="text-xs font-mono font-semibold tracking-wider text-gray-400 dark:text-neutral-500 mb-2 uppercase">Credential Overview</h4>
-                      <p className="text-sm text-gray-650 dark:text-neutral-300 font-light leading-relaxed">
+                      <p className="text-sm text-gray-600 dark:text-neutral-300 font-light leading-relaxed">
                         {paper.abstract}
                       </p>
                     </div>
@@ -145,14 +160,19 @@ export default function ResearchSection() {
                     </div>
 
                     {/* Footer Actions inside Card */}
-                    <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-gray-200/50 dark:border-neutral-800/50">
-                      <button
-                        onClick={() => alert(`Reviewing credential details for [${paper.title}]`)}
-                        className="py-2.5 px-5 rounded-full bg-google-red hover:bg-red-600 text-white font-sans text-xs font-semibold shadow-sm cursor-pointer transition-colors"
-                      >
-                        View Credential Details
-                      </button>
-                    </div>
+                    {paper.credentialUrl && (
+                      <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-gray-200/50 dark:border-neutral-800/50">
+                        <a
+                          href={paper.credentialUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 py-2.5 px-5 rounded-full bg-google-red hover:bg-red-600 text-white font-sans text-xs font-semibold shadow-sm cursor-pointer transition-colors"
+                        >
+                          <span>Verify Credential</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    )}
 
                   </div>
                 )}
@@ -160,7 +180,7 @@ export default function ResearchSection() {
                 {/* Direct action toggles bottom anchor */}
                 <div 
                   onClick={() => toggleExpand(paper.id)}
-                  className="bg-gray-50/40 dark:bg-neutral-900/10 border-t border-gray-100 dark:border-neutral-850/50 py-2.5 text-center flex items-center justify-center gap-1 cursor-pointer hover:bg-gray-55 dark:hover:bg-neutral-800/20 text-xs text-gray-400 dark:text-neutral-500 font-mono transition-colors"
+                  className="bg-gray-50/40 dark:bg-neutral-900/10 border-t border-gray-100 dark:border-neutral-800/50 py-2.5 text-center flex items-center justify-center gap-1 cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800/20 text-xs text-gray-400 dark:text-neutral-500 font-mono transition-colors"
                 >
                   {isExpanded ? (
                     <>

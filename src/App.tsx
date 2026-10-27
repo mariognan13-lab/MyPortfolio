@@ -6,10 +6,7 @@ import About from './components/About';
 import ResearchSection from './components/ResearchCard';
 import ProjectShowcase from './components/ProjectShowcase';
 import KnowledgeMap from './components/KnowledgeMap';
-import MetricsDashboard from './components/MetricsDashboard';
 import Timeline from './components/Timeline';
-import LibrarySection from './components/Library';
-import BlogSection from './components/Blog';
 import ContactSection from './components/Contact';
 import Footer from './components/Footer';
 
@@ -47,7 +44,7 @@ export default function App() {
       threshold: 0.1,
     };
 
-    const sectionIds = ['about', 'research', 'projects', 'skills', 'metrics', 'timeline', 'library', 'blog', 'contact'];
+    const sectionIds = ['about', 'research', 'projects', 'skills', 'timeline', 'contact'];
     
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
@@ -121,10 +118,7 @@ export default function App() {
         <ResearchSection />
         <ProjectShowcase />
         <KnowledgeMap />
-        <MetricsDashboard />
         <Timeline />
-        <LibrarySection />
-        <BlogSection />
         <ContactSection />
       </main>
 
